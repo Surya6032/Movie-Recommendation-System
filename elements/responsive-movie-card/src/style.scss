@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800');
+
+$primary-color: #cfd6e1;
+$bg-color:#dce1e5;
+$title-color: #9ac7fa;
+$background-image: url(http://digitalspyuk.cdnds.net/15/47/1600x800/landscape-1447754794-harrison-ford-blade-runner.jpg);
+$background-image2: url("http://www.blastr.com/sites/blastr/files/back-to-the-future-part-ii-original.jpg");
+$background-image3: url("https://static1.squarespace.com/static/51b3dc8ee4b051b96ceb10de/t/58d86b3db3db2b57ce8f2986/1490578241899/?format=2500w");
+$font-stack-content: 'Montserrat', helvetica, arial, sans-serif;
+$font-stack-header: 'Montserrat', helvetica, arial, sans-serif;
+$secondary-color: #2a9fff;
+
+html {
+	box-sizing:border-box;
+}
+
+*,*::before, *::after {
+	box-sizing:inherit;
+}
+
+html,body {
+	width:100%;
+	height:100%;
+}
+
+body {
+	background-color: $bg-color;
+	font-family: $font-stack-content;
+	font-size: 14px;
+	color:$primary-color;
+	line-height: 1.5;
+	font-weight: 400;
+	overflow-x: hidden;
+}
+
+* {
+	transition: .4s;
+}
+
+a {
+	text-decoration: none;
+}
+
+button {
+	font-family: inherit;
+	border: 0;
+	cursor: pointer;
+	&:focus {
+		outline: 0;
+	}
+}
+
+
+.movie-card {
+	background-size: contain;
+	background-repeat: no-repeat;
+	width:100%;
+	max-width: 800px;
+	height: 100%;
+	min-height: 300px;
+	display: block;
+	margin: 8vh auto;
+	border-radius: 8px;
+	box-shadow: 0px 8px 12px 0px rgba(0,0,0,0.25);
+	position: relative;
+	@media screen and (max-width: 800px) {
+		width: 95%;
+		max-width: 95%;
+	}
+	@media screen and (max-width: 600px) {
+		background-position:50% 0%;
+		background-size: cover;
+		height: 400px;
+	}
+	&[data-movie="Blade Runner"] {
+		background-image: $background-image;
+	}
+	&[data-movie="Back to the Future"] {
+		background-image: $background-image2;
+	}
+	&[data-movie="Akira"] {
+		background-image: $background-image3;
+	}
+	&__overlay {
+		width:100%;
+		height: 100%;
+		border-radius: 8px;
+		background: linear-gradient(to right, rgba(42,159,255,.2) 0%,rgba(33,33,32,1) 60%,rgba(33,33,32,1) 100%);
+		background-blend-mode: multiply;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		@media screen and (max-width: 600px) {
+			background: linear-gradient(to bottom, rgba(42,159,255,.2) 0%,rgba(33,33,32,1) 60%,rgba(33,33,32,1) 100%);
+		}
+	}
+	&__share {
+		padding: 1em;
+		display: inline-block;
+		width: 100%;
+		max-width: 130px;
+		@media screen and (max-width: 600px) {
+			display: block;
+			width: 100%;
+		}
+	}
+	&__icon {
+		color: #ffffff;
+		mix-blend-mode: lighten;
+		opacity: .4;
+		background: none;
+		padding: 0;
+		&:hover {
+			opacity:1;
+			mix-blend-mode: lighten;
+		}
+		&:not(:first-of-type) {
+			margin-left: 5px;
+		}
+		i {
+			font-size: 1.2em;
+		}
+	}
+	&__content {
+		width: 100%;
+		max-width:370px;
+		display: flex;
+		align-items: flex-start;
+		flex-direction: column;
+		position:relative;
+		float: right;
+		padding-right: 1.2em;
+		padding-bottom: 1em;
+		@media screen and (max-width: 1000px) {
+			width: 50%;
+		}
+		@media screen and (max-width: 600px) {
+			margin-top: 4.2em;
+			width: 100%;
+			float: inherit;
+			max-width: 100%;
+			padding: 0 1em 1em;
+		}
+	}
+	&__header {
+		margin-bottom: 2em;
+	}
+	&__title {
+		color: #ffffff;
+		margin-bottom: .25em;
+		opacity: .75;
+	}
+	&__info {
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		font-size: .8em;
+		color: $secondary-color;
+		line-height: 1;
+		margin: 0;
+		font-weight: 700;
+		opacity:.5;
+	}
+	&__desc {
+		font-weight: 300;
+		opacity: .84;
+		margin-bottom: 2em;
+	}
+}
+
+h1,h2,h3 {
+	font-family: $font-stack-header;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	line-height: 1;
+	font-weight: 400;
+}
+
+.btn {
+	padding: .5rem 2rem;
+	background-color: rgba(255,255,255,.4);
+	color: rgba(255,255,255,1);
+}
+
+.btn-outline {
+	background-color: transparent;
+	border: 3px solid #ffffff;
+}
+
+.btn::before {
+	font-family: 'Material Icons';
+	content:'\e037';
+	vertical-align: middle;
+	font-size: 1.5em;
+	padding-right:.5em;
+}
+
+.btn-outline:hover {
+	border-color: $secondary-color;
+	color: $secondary-color;
+	box-shadow: 0px 1px 8px 0px rgba(245,199,0,.2);
+}
