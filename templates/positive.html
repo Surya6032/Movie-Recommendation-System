@@ -6,266 +6,598 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
 <style>
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800");
-html {
+
+* {
   box-sizing: border-box;
 }
 
-*, *::before, *::after {
-  box-sizing: inherit;
-}
-
-html, body {
-  width: 100%;
-  height: 100%;
-}
-
 body {
-  background-color: #dce1e5;
-  font-family: "Montserrat", helvetica, arial, sans-serif;
-  font-size: 14px;
-  color: #cfd6e1;
-  line-height: 1.5;
-  font-weight: 400;
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  background-color: black;
 }
 
-* {
-  -webkit-transition: .4s;
-  transition: .4s;
+.fullscreen {
+  width: 100vw;
+  height: 100vh;
+  background: #020001;
 }
-
-a {
-  text-decoration: none;
-}
-
-button {
-  font-family: inherit;
-  border: 0;
-  cursor: pointer;
-}
-button:focus {
-  outline: 0;
-}
-
-.movie-card {
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 100%;
-  max-width: 800px;
+.fullscreen .container {
+  padding: 15px;
+  max-width: 1200px;
+  margin: auto;
   height: 100%;
-  min-height: 300px;
-  display: block;
-  margin: 8vh auto;
-  border-radius: 8px;
-  box-shadow: 0px 8px 12px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.fullscreen .container .card {
+  overflow: hidden;
+  width: 30%;
+  height: 70%;
+  background: #fff;
+  box-shadow: 1px 22px 44px rgba(0, 0, 0, 0.19);
+  transition: 0.6s;
+  border-radius: 2px;
   position: relative;
+  display: flex;
 }
-@media screen and (max-width: 800px) {
-  .movie-card {
-    width: 95%;
-    max-width: 95%;
-  }
+.fullscreen .container .card:hover {
+  transform: translateY(-15px);
+  box-shadow: 1px 12px 34px rgba(0, 0, 0, 0.31);
 }
-@media screen and (max-width: 600px) {
-  .movie-card {
-    background-position: 50% 0%;
-    background-size: cover;
-    height: 400px;
-  }
+.fullscreen .container .card:hover .sinopse {
+  opacity: 1;
+  transition-delay: 0.4s;
 }
-.movie-card[data-movie="Blade Runner"] {
-  background-image: url(http://digitalspyuk.cdnds.net/15/47/1600x800/landscape-1447754794-harrison-ford-blade-runner.jpg);
+.fullscreen .container .card:hover .sinopse .view {
+  opacity: 1;
+  transform: translateY(0%);
+  transition: 0.6s;
+  transition-delay: 1s;
 }
-.movie-card[data-movie="Back to the Future"] {
-  background-image: url("http://www.blastr.com/sites/blastr/files/back-to-the-future-part-ii-original.jpg");
+.fullscreen .container .card:hover .sinopse .content-sinopse .text {
+  transform: translateY(0);
+  transition-delay: 0.6s;
 }
-.movie-card[data-movie="Akira"] {
-  background-image: url("https://static1.squarespace.com/static/51b3dc8ee4b051b96ceb10de/t/58d86b3db3db2b57ce8f2986/1490578241899/?format=2500w");
+.fullscreen .container .card:hover .sinopse .content-sinopse .title {
+  transform: translateY(0);
+  transition-delay: 0.2s;
 }
-.movie-card__overlay {
+.fullscreen .container .card:hover .date {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+.fullscreen .container .card:hover .content {
+  transform: translateY(100%);
+  opacity: 0;
+}
+.fullscreen .container .card .date {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  color: #fff;
+  font-weight: 300;
+  font-size: 14px;
+  transition: 0.8s;
+}
+.fullscreen .container .card .date .tv_ico img {
+  width: 12px;
+  vertical-align: baseline;
+  margin-left: 6px;
+}
+.fullscreen .container .card .content {
+  transition: 0.8s;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: flex-end;
+  padding: 25px 25px 50px 25px;
+}
+.fullscreen .container .card .content .title {
+  width: 100%;
+  color: #fff;
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 50px;
+  margin-bottom: 12px;
+}
+.fullscreen .container .card .content .text {
+  width: 100%;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 300;
+}
+.fullscreen .container .card .sinopse {
   width: 100%;
   height: 100%;
-  border-radius: 8px;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(42, 159, 255, 0.2)), color-stop(60%, #212120), to(#212120));
-  background: linear-gradient(to right, rgba(42, 159, 255, 0.2) 0%, #212120 60%, #212120 100%);
-  background-blend-mode: multiply;
   position: absolute;
   top: 0;
-  bottom: 0;
-  right: 0;
   left: 0;
-}
-@media screen and (max-width: 600px) {
-  .movie-card__overlay {
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(42, 159, 255, 0.2)), color-stop(60%, #212120), to(#212120));
-    background: linear-gradient(to bottom, rgba(42, 159, 255, 0.2) 0%, #212120 60%, #212120 100%);
-  }
-}
-.movie-card__share {
-  padding: 1em;
-  display: inline-block;
-  width: 100%;
-  max-width: 130px;
-}
-@media screen and (max-width: 600px) {
-  .movie-card__share {
-    display: block;
-    width: 100%;
-  }
-}
-.movie-card__icon {
-  color: #ffffff;
-  mix-blend-mode: lighten;
-  opacity: .4;
-  background: none;
-  padding: 0;
-}
-.movie-card__icon:hover {
-  opacity: 1;
-  mix-blend-mode: lighten;
-}
-.movie-card__icon:not(:first-of-type) {
-  margin-left: 5px;
-}
-.movie-card__icon i {
-  font-size: 1.2em;
-}
-.movie-card__content {
-  width: 100%;
-  max-width: 370px;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-align: start;
-          align-items: flex-start;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-          flex-direction: column;
-  position: relative;
-  float: right;
-  padding-right: 1.2em;
-  padding-bottom: 1em;
-}
-@media screen and (max-width: 1000px) {
-  .movie-card__content {
-    width: 50%;
-  }
-}
-@media screen and (max-width: 600px) {
-  .movie-card__content {
-    margin-top: 4.2em;
-    width: 100%;
-    float: inherit;
-    max-width: 100%;
-    padding: 0 1em 1em;
-  }
-}
-.movie-card__header {
-  margin-bottom: 2em;
-}
-.movie-card__title {
-  color: #ffffff;
-  margin-bottom: .25em;
-  opacity: .75;
-}
-.movie-card__info {
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: .8em;
-  color: #2a9fff;
-  line-height: 1;
-  margin: 0;
-  font-weight: 700;
-  opacity: .5;
-}
-.movie-card__desc {
+  padding: 25px 25px 50px 25px;
+  background: rgba(0, 0, 0, 0.78);
+  color: #fff;
   font-weight: 300;
-  opacity: .84;
-  margin-bottom: 2em;
+  opacity: 0;
+  transition: 0.8s;
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+.fullscreen .container .card .sinopse iframe {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  margin-left: -30px;
+  height: 260px;
+}
+.fullscreen .container .card .sinopse .view {
+  position: absolute;
+  bottom: 15px;
+  right: 25px;
+  color: #fff;
+  font-size: 14px;
+  border-bottom: 1px solid #fff;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: 0.6s;
+  cursor: pointer;
+}
+.fullscreen .container .card .sinopse .content-sinopse .title {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  transform: translateY(-100%);
+  transition: 0.6s;
+}
+.fullscreen .container .card .sinopse .content-sinopse .text {
+  transform: translateY(100%);
+  transition: 0.6s;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 300;
+  font-size: 14px;
+}
+.fullscreen .container .card_1 {
+  background: url("https://w.wallhaven.cc/full/j8/wallhaven-j8gqyq.jpg") no-repeat center/cover;
+}
+.fullscreen .container .card_2 {
+  background: url("https://w.wallhaven.cc/full/5d/wallhaven-5dpo51.jpg") no-repeat 45%/cover;
+}
+.fullscreen .container .card_3 {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.88)), url("https://w.wallhaven.cc/full/43/wallhaven-43y676.jpg") no-repeat center/cover;
 }
 
-h1, h2, h3 {
-  font-family: "Montserrat", helvetica, arial, sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  line-height: 1;
-  font-weight: 400;
+.fullserie {
+  background-color: #333;
+  -webkit-clip-path: circle(0% at 0 100%);
+  clip-path: circle(0% at 0 100%);
+  min-height: 550px;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: .6s;
+}
+.fullserie.active {
+  background-color: #333;
+  transition: .6s;
+  transition-delay: 0.45s;
+  -webkit-clip-path: circle(270% at 220px 88%);
+  clip-path: circle(270% at 220px 88%);
+}
+.fullserie .close {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.fullserie .close img {
+  width: 22px;
+}
+.fullserie .episodes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-rows: repeat(4, minmax(230px, auto));
+  grid-gap: 30px;
+  grid-auto-flow: dense;
+  grid-auto-rows: minmax(260px, auto);
+  width: 100%;
+  height: 100%;
+  padding: 60px 60px 120px 60px;
+}
+.fullserie .episodes .episode {
+  background: red;
 }
 
-.btn {
-  padding: .5rem 2rem;
-  background-color: rgba(255, 255, 255, 0.4);
+@media (min-width: 580px) and (max-width: 992px) {
+  .fullscreen {
+    height: auto;
+  }
+  .fullscreen .container {
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+  .fullscreen .container .card {
+    overflow: hidden;
+    width: 45%;
+    height: 400px;
+    background: #fff;
+    box-shadow: 1px 22px 44px rgba(0, 0, 0, 0.19);
+    transition: 0.6s;
+    border-radius: 2px;
+    position: relative;
+    display: flex;
+    margin-bottom: 10%;
+  }
+  .fullscreen .container .card:nth-child(-n+2) {
+    margin-top: 10%;
+  }
+  .fullscreen .container .card .content .title {
+    width: 100%;
+    color: #fff;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 36px;
+    margin-bottom: 12px;
+  }
+  .fullscreen .container .card .content .text {
+    width: 100%;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 300;
+  }
+  .fullscreen .container .card .sinopse {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 25px 25px 50px 25px;
+    background: rgba(0, 0, 0, 0.78);
+    color: #fff;
+    font-weight: 300;
+    opacity: 0;
+    transition: 0.8s;
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+  .fullscreen .container .card .sinopse iframe {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    margin-left: -30px;
+    height: 260px;
+  }
+  .fullscreen .container .card .sinopse .view {
+    position: absolute;
+    bottom: 15px;
+    right: 25px;
+    color: #fff;
+    font-size: 14px;
+    border-bottom: 1px solid #fff;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: 0.6s;
+    cursor: pointer;
+  }
+  .fullscreen .container .card .sinopse .content-sinopse .title {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    transform: translateY(-100%);
+    transition: 0.6s;
+  }
+  .fullscreen .container .card .sinopse .content-sinopse .text {
+    transform: translateY(100%);
+    transition: 0.6s;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 300;
+    font-size: 14px;
+  }
+  .fullscreen .container .card_1 {
+    background: url("https://w.wallhaven.cc/full/j8/wallhaven-j8gqyq.jpg") no-repeat center/cover;
+  }
+  .fullscreen .container .card_2 {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.98)), url("https://w.wallhaven.cc/full/5d/wallhaven-5dpo51.jpg") no-repeat 45%/cover;
+  }
+  .fullscreen .container .card_3 {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.88)), url("https://w.wallhaven.cc/full/43/wallhaven-43y676.jpg") no-repeat center/cover;
+  }
+}
+@media (min-width: 320px) and (max-width: 580px) {
+  .fullscreen {
+    height: auto;
+  }
+  .fullscreen .container {
+    flex-wrap: wrap;
+  }
+  .fullscreen .container .card {
+    overflow: hidden;
+    width: 90%;
+    height: 400px;
+    background: #fff;
+    box-shadow: 1px 22px 44px rgba(0, 0, 0, 0.19);
+    transition: 0.6s;
+    border-radius: 2px;
+    position: relative;
+    display: flex;
+    margin-bottom: 10%;
+  }
+  .fullscreen .container .card .content .title {
+    width: 100%;
+    color: #fff;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 36px;
+    margin-bottom: 12px;
+  }
+  .fullscreen .container .card .content .text {
+    width: 100%;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 300;
+  }
+  .fullscreen .container .card .sinopse {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 25px 25px 50px 25px;
+    background: rgba(0, 0, 0, 0.78);
+    color: #fff;
+    font-weight: 300;
+    opacity: 0;
+    transition: 0.8s;
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+  .fullscreen .container .card .sinopse iframe {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    margin-left: -30px;
+    height: 260px;
+  }
+  .fullscreen .container .card .sinopse .view {
+    position: absolute;
+    bottom: 15px;
+    right: 25px;
+    color: #fff;
+    font-size: 14px;
+    border-bottom: 1px solid #fff;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: 0.6s;
+    cursor: pointer;
+  }
+  .fullscreen .container .card .sinopse .content-sinopse {
+    pointer-events: none;
+  }
+  .fullscreen .container .card .sinopse .content-sinopse .title {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    transform: translateY(-100%);
+    transition: 0.6s;
+  }
+  .fullscreen .container .card .sinopse .content-sinopse .text {
+    pointer-events: none;
+    transform: translateY(100%);
+    transition: 0.6s;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 300;
+    font-size: 14px;
+  }
+  .fullscreen .container .card_1 {
+    background: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-616574.jpg") no-repeat center/cover;
+  }
+  .fullscreen .container .card_2 {
+    background: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-539333.png") no-repeat 45%/cover;
+  }
+  .fullscreen .container .card_3 {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.88)), url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-5379.png") no-repeat center/cover;
+  }
+}
+@font-face {
+  font-family: 'Sucrose Bold Two';
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/sucrose.woff2") format("woff2");
+}
+@font-face {
+  font-family: 'IM Fell French Canon Pro';
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/im-fell-french-canon-pro.woff2") format("woff2");
+}
+header {
+
+  font-family: 'Sucrose Bold Two';
+}
+header h1 {
+
+  font-size: 3vw;
+  line-height: .8;
+  top: 20px;
+  text-align: center;
+  color:white;
+  left:800px;
+}
+
+header h1 span {
+  display: block;
+  font-size: 3.75vw;
+  text-align: center;
+}
+h3{
   color: white;
-}
-
-.btn-outline {
-  background-color: transparent;
-  border: 3px solid #ffffff;
-}
-
-.btn::before {
-  font-family: 'Material Icons';
-  content: '\e037';
-  vertical-align: middle;
-  font-size: 1.5em;
-  padding-right: .5em;
-}
-
-.btn-outline:hover {
-  border-color: #2a9fff;
-  color: #2a9fff;
-  box-shadow: 0px 1px 8px 0px rgba(245, 199, 0, 0.2);
+  font-size: 1vw;
+  line-height: .8;
+  top: 200px;
+  text-align: center;
+  color:white;
+  left:1000px;
+  display: block;
+  text-align: center;
 }
 </style>
 </head>
 <body>
 
-    <div class="movie">
-        <h2><u>Recommendations:</u></h2>
-        <p>Showing results for: {{ search_name }}</p>
-        <div id="movie-card-list">
-          <div class="movie-card" data-movie="Blade Runner">
-            <div class="movie-card__overlay"></div>
-            <div class="movie-card__share">
-              <button class="movie-card__icon"><i class="material-icons">&#xe87d</i></button>
-              <button class="movie-card__icon"><i class="material-icons">&#xe253</i></button>
-              <button class="movie-card__icon"><i class="material-icons">&#xe80d</i></button>
-            </div>
-            <div class="movie-card__content">
-              <div class="movie-card__header">
-                <h1 class="movie-card__title">{{ movie_names[0]}}</h1>
-                <h4 class="movie-card__info">{{ movie_date[0] }} {{movie_type[0]}}</h4>
-              </div>
-              <p class="movie-card__desc">{{ movie_overview[0] }}</p>
-              <button class="btn btn-outline movie-card__button" type="button">Watch Trailer</button>
-            </div>
 
+  <div class="fullscreen">
+    <header>
+    <h1>The <span>Recommender</h1>
+     <h3>By Surya Singh</h3>
+    </header>
+    <div class="container">
+      <div class="card card_1">
+        <div class="date">
+          {{ movie_date[0] }}
+          <span class="tv_ico"><img src="http://www.cartaodental.com/nbase/image/pc.svg"></span>
+        </div>
+        <div class="content">
+          <div class="title">
+            {{ movie_names[0]}}
+          </div>
+          <div class="text">
+
+          </div>
+        </div>
+        <div class="sinopse">
+
+
+          <iframe id="ytplayer" type="text/html" data-video="https://www.youtube.com/embed/{val}"
+  src="" frameborder="0" autoplay allowfullscreen></iframe>
+          <div class="content-sinopse">
+            <div class="title">Series Synopsis</div>
+            <div class="text">{{ movie_overview[0] }}
             </div>
           </div>
-          <div class="movie-card" data-movie="Blade Runner">
-            <div class="movie-card__overlay"></div>
-            <div class="movie-card__share">
-              <button class="movie-card__icon"><i class="material-icons">&#xe87d</i></button>
-              <button class="movie-card__icon"><i class="material-icons">&#xe253</i></button>
-              <button class="movie-card__icon"><i class="material-icons">&#xe80d</i></button>
-            </div>
-            <div class="movie-card__content">
-              <div class="movie-card__header">
-                <h1 class="movie-card__title">{{ movie_names[1]}}</h1>
-                <h4 class="movie-card__info">{{ movie_date[1] }} {{movie_type[1]}}</h4>
-              </div>
-              <p class="movie-card__desc">{{ movie_overview[1] }}</p>
-              <button class="btn btn-outline movie-card__button" type="button">Watch Trailer</button>
-            </div>
+          <div class="view series_lacasa"> Watch Full Series </div>
+        </div>
+      </div>
+      <div class="card card_2">
+        <div class="date">
+          {{ movie_date[1] }}
+        </div>
+        <div class="content">
+          <div class="title">
+            {{ movie_names[1]}}
+          </div>
+          <div class="text">
 
+          </div>
+        </div>
+        <div class="sinopse">
+
+
+
+          <div class="content-sinopse">
+            <div class="title">Series Synopsis</div>
+            <div class="text">{{ movie_overview[1] }}
             </div>
           </div>
+          <div class="view series_lacasa"> Watch Movie </div>
+        </div>
+      </div>
+      <div class="card card_3">
+        <div class="date">
+          {{ movie_date[2] }}
+        </div>
+        <div class="content">
+          <div class="title">
+            {{ movie_names[2]}}
+          </div>
+          <div class="text">
+
+          </div>
+        </div>
+        <div class="sinopse">
 
 
 
-  </div>
+          <div class="content-sinopse">
+            <div class="title">Series Synopsis</div>
+            <div class="text">{{ movie_overview[2] }}
+            </div>
+          </div>
+          <div class="view series_lacasa"> Watch Full Series </div>
+        </div>
+      </div>
+
 <!-- partial -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+
+<script>
+$(".card").hover(function() {
+  var vSrc =  $(this).find('iframe').data('video');
+  var video = $(this).find('iframe');
+  video.attr('src',vSrc);
+  setTimeout(function(){ player.unMute(); }, 1000);
+},
+function() {
+  $(this).find('iframe').attr('src','');
+});
+
+$('.view').click(function(){
+  var el = $(this);
+
+  if(el.hasClass('series_lacasa') == true){
+    $('.episodes .episode').each(function(){
+      var toShow = $(this).data('lacasa');
+      $(this).css('background','url('+toShow+') no-repeat center/cover');
+    });
+  } else if (el.hasClass('series_got') == true) {
+    $('.episodes .episode').each(function(){
+      var toShow = $(this).data('got');
+      $(this).css('background','url('+toShow+') no-repeat center/cover');
+    });
+  }  else if (el.hasClass('series_vikings') == true) {
+    $('.episodes .episode').each(function(){
+      var toShow = $(this).data('vikings');
+      $(this).css('background','url('+toShow+') no-repeat center/cover');
+    });
+  }
+
+  $('.fullserie').addClass('active');
+});
+
+$('.fullserie .close').click(function(){
+  $('.fullserie').removeClass('active');
+});
+</script>
+<script>
+function parseURLParams(url) {
+    var queryStart = url.indexOf("?") + 1,
+        queryEnd   = url.indexOf("#") + 1 || url.length + 1,
+        query = url.slice(queryStart, queryEnd - 1),
+        pairs = query.replace(/\+/g, " ").split("&"),
+        parms = {}, i, n, v, nv;
+
+    if (query === url || query === "") return;
+
+    for (i = 0; i < pairs.length; i++) {
+        nv = pairs[i].split("=", 2);
+        n = decodeURIComponent(nv[0]);
+        v = decodeURIComponent(nv[1]);
+
+        if (!parms.hasOwnProperty(n)) parms[n] = [];
+        parms[n].push(nv.length === 2 ? v : null);
+    }
+    return parms;
+}
+var value=parseURLParams("http://api.themoviedb.org/3/movie/{{movieid[0]}}/videos?api_key=06412c2ac60d3b3a66c7fb129dcaca28")
+var val=value["key"];
+</script>
 </body>
 </html>

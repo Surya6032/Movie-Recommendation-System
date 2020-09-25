@@ -1,4 +1,5 @@
 import flask
+from flask import Flask, render_template, request
 import difflib
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
@@ -29,6 +30,7 @@ def get_recommendations(title):
     rating = df2['vote_average'].iloc[movie_indices]
     moviedetails=df2['overview'].iloc[movie_indices]
     movietypes=df2['keywords'].iloc[movie_indices]
+    movieid=df2['id'].iloc[movie_indices]
  
   
     return_df = pd.DataFrame(columns=['Title','Year'])
@@ -37,7 +39,19 @@ def get_recommendations(title):
     return_df['Ratings'] = rating
     return_df['Overview']=moviedetails
     return_df['Types']=movietypes
+    return_df['ID']=movieid
     return return_df
+
+def get_suggestions():
+    data = pd.read_csv('tmdb.csv')
+    return list(data['title'].str.capitalize())
+
+app = Flask(__name__)
+@app.route("/")
+@app.route("/index")
+def index():
+    suggestions = get_suggestions()
+    return render_template('index.html',suggestions=suggestions)
 
 # Set up the main route
 @app.route('/', methods=['GET', 'POST'])
@@ -59,13 +73,15 @@ def main():
             ratings = []
             overview=[]
             types=[]
+            mid=[]
             for i in range(len(result_final)):
                 names.append(result_final.iloc[i][0])
                 dates.append(result_final.iloc[i][1])
                 ratings.append(result_final.iloc[i][2])
                 overview.append(result_final.iloc[i][3])
                 types.append(result_final.iloc[i][4])
-            return flask.render_template('positive.html',movie_type=types[5:],movie_overview=overview,movie_names=names,movie_date=dates,movie_ratings=ratings,search_name=m_name)
+                mid.append(result_final.iloc[i][5])
+            return flask.render_template('positive.html',movie_type=types[5:],movieid=mid,movie_overview=overview,movie_names=names,movie_date=dates,movie_ratings=ratings,search_name=m_name)
 
 if __name__ == '__main__':
     app.run()
