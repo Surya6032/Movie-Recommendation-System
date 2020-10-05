@@ -593,27 +593,27 @@ fetch("http://api.themoviedb.org/3/movie/"+{{movieid[0]}}+"/videos?api_key=06412
 .then((data) => {
 const value = data.results[0].key
 //Apply HTML src
-document.getElementById("ytplayer").src = 'https://www.youtube.com/embed/'+value+'?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&modestbranding=1&controls=0&showinfo=1&mute=1'
+document.getElementById("ytplayer").src = 'http://www.youtube.com/embed/'+value+'?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&modestbranding=1&controls=0&showinfo=1&mute=1'
 //Set Data-Attribute
-document.getElementById("ytplayer").setAttribute('data-video', 'https://www.youtube.com/embed/'+value+'?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&modestbranding=1&controls=0&showinfo=1&mute=1')
+document.getElementById("ytplayer").setAttribute('data-video', 'http://www.youtube.com/embed/'+value+'?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&modestbranding=1&controls=0&showinfo=1&mute=1')
 });
 fetch("http://api.themoviedb.org/3/movie/"+{{movieid[1]}}+"/videos?api_key=06412c2ac60d3b3a66c7fb129dcaca28&append_to_response=videost")
 .then((response) => response.json())
 .then((data) => {
 const value = data.results[0].key
 //Apply HTML src
-document.getElementById("ytplayer1").src = 'https://www.youtube.com/embed/'+value+'?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&modestbranding=1&controls=0&showinfo=1&mute=1'
+document.getElementById("ytplayer1").src = 'http://www.youtube.com/embed/'+value+'?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&modestbranding=1&controls=0&showinfo=1&mute=1'
 //Set Data-Attribute
-document.getElementById("ytplayer1").setAttribute('data-video', 'https://www.youtube.com/embed/'+value+'?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&modestbranding=1&controls=0&showinfo=1&mute=1')
+document.getElementById("ytplayer1").setAttribute('data-video', 'http://www.youtube.com/embed/'+value+'?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&modestbranding=1&controls=0&showinfo=1&mute=1')
 });
 fetch("http://api.themoviedb.org/3/movie/"+{{movieid[2]}}+"/videos?api_key=06412c2ac60d3b3a66c7fb129dcaca28&append_to_response=videost")
 .then((response) => response.json())
 .then((data) => {
 const value = data.results[0].key
 //Apply HTML src
-document.getElementById("ytplayer2").src = 'https://www.youtube.com/embed/'+value+'?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&modestbranding=1&controls=0&showinfo=1&mute=1'
+document.getElementById("ytplayer2").src = 'http://www.youtube.com/embed/'+value+'?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&modestbranding=1&controls=0&showinfo=1&mute=1'
 //Set Data-Attribute
-document.getElementById("ytplayer2").setAttribute('data-video', 'https://www.youtube.com/embed/'+value+'?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&modestbranding=1&controls=0&showinfo=1&mute=1')
+document.getElementById("ytplayer2").setAttribute('data-video', 'http://www.youtube.com/embed/'+value+'?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&modestbranding=1&controls=0&showinfo=1&mute=1')
 });
 
 </script>
