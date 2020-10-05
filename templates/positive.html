@@ -513,35 +513,35 @@ h3{
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 
-fetch("https://api.themoviedb.org/3/movie/"+{{movieid[0]}}+"?api_key=06412c2ac60d3b3a66c7fb129dcaca28&language=en-US")
+fetch("http://api.themoviedb.org/3/movie/"+{{movieid[0]}}+"?api_key=06412c2ac60d3b3a66c7fb129dcaca28&language=en-US")
     .then((response) => response.json())
     .then((data) => {
     const value = data.poster_path;
     //Apply HTML src
-     console.log('https://image.tmdb.org/t/p/original'+value);
-     var urlString = "url('https://image.tmdb.org/t/p/original" + value + " ')";
+     console.log('http://image.tmdb.org/t/p/original'+value);
+     var urlString = "url('http://image.tmdb.org/t/p/original" + value + " ')";
      document.getElementById('image1').style.backgroundImage = urlString;
 	 document.getElementById('image1').style.backgroundRepeat = "no-repeat";
 	  document.getElementById('image1').style.backgroundSize = "cover";
 });
-fetch("https://api.themoviedb.org/3/movie/"+{{movieid[1]}}+"?api_key=06412c2ac60d3b3a66c7fb129dcaca28&language=en-US")
+fetch("http://api.themoviedb.org/3/movie/"+{{movieid[1]}}+"?api_key=06412c2ac60d3b3a66c7fb129dcaca28&language=en-US")
     .then((response) => response.json())
     .then((data) => {
     const value = data.poster_path;
     //Apply HTML src
-     console.log('https://image.tmdb.org/t/p/original'+value);
-     var urlString = "url('https://image.tmdb.org/t/p/original" + value + " ')";
+     console.log('http://image.tmdb.org/t/p/original'+value);
+     var urlString = "url('http://image.tmdb.org/t/p/original" + value + " ')";
      document.getElementById('image2').style.backgroundImage = urlString;
 	 document.getElementById('image2').style.backgroundRepeat = "no-repeat";
 	  document.getElementById('image2').style.backgroundSize = "cover";
 });
-fetch("https://api.themoviedb.org/3/movie/"+{{movieid[2]}}+"?api_key=06412c2ac60d3b3a66c7fb129dcaca28&language=en-US")
+fetch("http://api.themoviedb.org/3/movie/"+{{movieid[2]}}+"?api_key=06412c2ac60d3b3a66c7fb129dcaca28&language=en-US")
     .then((response) => response.json())
     .then((data) => {
     const value = data.poster_path;
     //Apply HTML src
      console.log('https://image.tmdb.org/t/p/original'+value);
-     var urlString = "url('https://image.tmdb.org/t/p/original" + value + " ')";
+     var urlString = "url('http://image.tmdb.org/t/p/original" + value + " ')";
      document.getElementById('image3').style.backgroundImage = urlString;
 	 document.getElementById('image3').style.backgroundRepeat = "no-repeat";
 	  document.getElementById('image3').style.backgroundSize = "cover";
