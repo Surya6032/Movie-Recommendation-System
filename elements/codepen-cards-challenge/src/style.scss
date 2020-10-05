@@ -1,0 +1,418 @@
+*{
+  box-sizing:border-box;
+}
+body{
+  overflow-x:hidden;
+  margin:0;
+  padding:0;
+  font-family:'Sunflower';
+}
+
+.fullscreen {
+  width:100vw;
+  height:100vh;
+  background:#ffcc11;
+  .container {
+    padding:15px;
+    max-width:1200px;
+    margin:auto;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    .card {
+      overflow:hidden;
+      width:30%;
+      height:70%;
+      background:#fff;
+      box-shadow:1px 22px 44px rgba(0,0,0,.19);
+      transition:0.6s;
+      border-radius:2px;
+      position:relative;
+      display:flex; 
+      &:hover {
+        transform:translateY(-15px);
+        box-shadow:1px 12px 34px rgba(0,0,0,.31);
+        .sinopse{
+          opacity:1;
+          transition-delay:0.4s;
+          .view{
+            opacity:1;
+            transform:translateY(0%);
+            transition:0.6s;
+            transition-delay:1s;
+          }
+          .content-sinopse {
+            .text{
+              transform:translateY(0);
+              transition-delay:0.6s;
+            }
+            .title {
+              transform:translateY(0);
+              transition-delay:0.2s;
+            }
+          }
+        }
+        .date{
+          transform:translateY(-100%);
+          opacity:0;
+        }
+        .content{
+            transform:translateY(100%);
+            opacity:0;
+        }
+      }
+      .date{
+        position:absolute;
+        top:25px;
+        right:25px;
+        color:#fff;
+        font-weight:300;
+        font-size:14px;
+        transition:0.8s;
+        .tv_ico {
+          img {
+            width:12px;
+            vertical-align:baseline;
+            margin-left:6px;
+          }
+        }
+      }
+      .content{
+        transition:0.8s;
+        display:flex;
+        flex-wrap:wrap;
+        align-self:flex-end;
+        padding:25px 25px 50px 25px;
+        .title{
+          width:100%;
+          color:#fff;
+          font-size:44px;
+          font-weight:700;
+          line-height:50px;
+          margin-bottom:12px;
+        }
+        .text{
+          width:100%;
+          color:#fff;
+          font-size:16px;
+          font-weight:300;
+        }
+      }
+      .sinopse {
+        width:100%;
+        height:100%;
+        position:absolute;
+        top:0;
+        left:0;
+        padding:25px 25px 50px 25px;
+        background:rgba(0,0,0,.78);
+        color:#fff;
+        font-weight:300;
+        opacity:0;
+        transition:0.8s;
+        display:flex;
+        align-items:flex-end;
+        flex-wrap:wrap;
+        iframe {
+          position: absolute;
+          top: 0;
+          width: 100%;
+          margin-left: -30px;
+          height: 260px;
+        }
+        .view {
+          position:absolute;
+          bottom:15px;
+          right:25px;
+          color:#fff;
+          font-size:14px;
+          border-bottom:1px solid #fff;
+          opacity:0;
+          transform:translateY(100%);
+          transition:0.6s;
+          cursor:pointer;
+        }
+        .content-sinopse{
+          .title{
+            color:rgba(255,255,255,.6);
+            font-size:22px;
+            font-weight:700;
+            margin-bottom:12px;
+            transform:translateY(-100%);
+            transition:0.6s;
+          }
+          .text{
+            transform:translateY(100%);
+            transition:0.6s;
+            color:rgba(255,255,255,.6);
+            font-weight:300;
+            font-size:14px;
+          }
+        }
+      }
+      &_1 {
+  background:url('https://w.wallhaven.cc/full/j8/wallhaven-j8gqyq.jpg') no-repeat center/cover;
+      }
+      &_2 {
+  background:url('https://w.wallhaven.cc/full/5d/wallhaven-5dpo51.jpg') no-repeat 45%/cover;
+      }
+      &_3 {
+        background:linear-gradient(to bottom, rgba(0,0,0,.75),rgba(0,0,0,0), rgba(0,0,0,.88)),url('https://w.wallhaven.cc/full/43/wallhaven-43y676.jpg') no-repeat center/cover;
+      }
+    }
+  }
+}
+
+
+.fullserie {
+  background-color: #333;
+  -webkit-clip-path: circle(0% at 0 100%);
+  clip-path: circle(0% at 0 100%);
+  min-height:550px;
+  width:100vw;
+  height:100vh;
+  position:fixed;
+  top:0;
+  left:0;
+  transition:.6s;
+  &.active {
+    background-color: #333;
+    transition:.6s;
+    transition-delay:0.45s;
+    -webkit-clip-path: circle(270% at 220px 88%);
+    clip-path: circle(270% at 220px 88%);
+  }
+  .close {
+    position:absolute;
+    right:5px;
+    top:5px;
+    height:50px;
+    width:50px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    img {
+      width:22px;
+    }
+  }
+  .episodes {
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-rows:repeat(4, minmax(230px, auto));
+    grid-gap:30px;
+    grid-auto-flow:dense;
+    grid-auto-rows:minmax(260px, auto);
+    width:100%;
+    height:100%;
+    padding:60px 60px 120px 60px;
+    .episode {
+   background:red;
+    }
+  }
+}
+
+@media(min-width:580px) and (max-width:992px){
+  .fullscreen {
+    height:auto;
+    .container {
+      flex-wrap:wrap;
+      justify-content:space-evenly;
+      
+      .card {
+        overflow:hidden;
+        width:45%;
+        height:400px;
+        background:#fff;
+        box-shadow:1px 22px 44px rgba(0,0,0,.19);
+        transition:0.6s;
+        border-radius:2px;
+        position:relative;
+        display:flex;
+        margin-bottom:10%;
+        &:nth-child(-n+2){
+          margin-top:10%;
+        }
+        .content{
+          .title{
+            width:100%;
+            color:#fff;
+            font-size:28px;
+            font-weight:700;
+            line-height:36px;
+            margin-bottom:12px;
+          }
+          .text{
+            width:100%;
+            color:#fff;
+            font-size:14px;
+            font-weight:300;
+          }
+        }
+        .sinopse {
+          width:100%;
+          height:100%;
+          position:absolute;
+          top:0;
+          left:0;
+          padding:25px 25px 50px 25px;
+          background:rgba(0,0,0,.78);
+          color:#fff;
+          font-weight:300;
+          opacity:0;
+          transition:0.8s;
+          display:flex;
+          align-items:flex-end;
+          flex-wrap:wrap;
+          iframe {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            margin-left: -30px;
+            height: 260px;
+          }
+          .view {
+            position:absolute;
+            bottom:15px;
+            right:25px;
+            color:#fff;
+            font-size:14px;
+            border-bottom:1px solid #fff;
+            opacity:0;
+            transform:translateY(100%);
+            transition:0.6s;
+            cursor:pointer;
+          }
+          .content-sinopse{
+            .title{
+              color:rgba(255,255,255,.6);
+              font-size:22px;
+              font-weight:700;
+              margin-bottom:12px;
+              transform:translateY(-100%);
+              transition:0.6s;
+            }
+            .text{
+              transform:translateY(100%);
+              transition:0.6s;
+              color:rgba(255,255,255,.6);
+              font-weight:300;
+              font-size:14px;
+            }
+          }
+        }
+        &_1 {
+          background:url('https://w.wallhaven.cc/full/j8/wallhaven-j8gqyq.jpg') no-repeat center/cover;
+        }
+        &_2 {
+          background:linear-gradient(to bottom, rgba(0,0,0,0),rgba(0,0,0,0), rgba(0,0,0,.98)),url('https://w.wallhaven.cc/full/5d/wallhaven-5dpo51.jpg') no-repeat 45%/cover;
+        }
+        &_3 {
+          background:linear-gradient(to bottom, rgba(0,0,0,.75),rgba(0,0,0,0), rgba(0,0,0,.88)),url('https://w.wallhaven.cc/full/43/wallhaven-43y676.jpg') no-repeat center/cover;
+        }
+      }
+    }
+  }
+}
+
+
+@media(min-width:320px) and (max-width:580px){
+  .fullscreen {
+    height:auto;
+    .container {
+      flex-wrap:wrap;
+      .card {
+      overflow:hidden;
+      width:90%;
+      height:400px;
+      background:#fff;
+      box-shadow:1px 22px 44px rgba(0,0,0,.19);
+      transition:0.6s;
+      border-radius:2px;
+      position:relative;
+      display:flex;
+        margin-bottom:10%;
+        .content{
+          .title{
+            width:100%;
+            color:#fff;
+            font-size:28px;
+            font-weight:700;
+            line-height:36px;
+            margin-bottom:12px;
+          }
+          .text{
+            width:100%;
+            color:#fff;
+            font-size:14px;
+            font-weight:300;
+          }
+        }
+        .sinopse {
+          width:100%;
+          height:100%;
+          position:absolute;
+          top:0;
+          left:0;
+          padding:25px 25px 50px 25px;
+          background:rgba(0,0,0,.78);
+          color:#fff;
+          font-weight:300;
+          opacity:0;
+          transition:0.8s;
+          display:flex;
+          align-items:flex-end;
+          flex-wrap:wrap;
+          iframe {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            margin-left: -30px;
+            height: 260px;
+          }
+          .view {
+            position:absolute;
+            bottom:15px;
+            right:25px;
+            color:#fff;
+            font-size:14px;
+            border-bottom:1px solid #fff;
+            opacity:0;
+            transform:translateY(100%);
+            transition:0.6s;
+            cursor:pointer;
+          }
+          .content-sinopse{
+            pointer-events:none;
+            .title{
+              color:rgba(255,255,255,.6);
+              font-size:22px;
+              font-weight:700;
+              margin-bottom:12px;
+              transform:translateY(-100%);
+              transition:0.6s;
+            }
+            .text{
+              pointer-events:none;
+              transform:translateY(100%);
+              transition:0.6s;
+              color:rgba(255,255,255,.6);
+              font-weight:300;
+              font-size:14px;
+            }
+          }
+        }
+        &_1 {
+          background:url('https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-616574.jpg') no-repeat center/cover;
+        }
+        &_2 {
+          background:url('https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-539333.png') no-repeat 45%/cover;
+        }
+        &_3 {
+          background:linear-gradient(to bottom, rgba(0,0,0,.75),rgba(0,0,0,0), rgba(0,0,0,.88)),url('https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-5379.png') no-repeat center/cover;
+        }
+      }
+    }
+  }
+}

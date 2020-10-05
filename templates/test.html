@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>JavaScript - read JSON from URL</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+</head>
+
+<body>
+
+
+
+
+    <iframe id="ytplayer" type="text/html" frameborder="0" autoplay allowfullscreen></iframe>
+    <script>
+
+    fetch("https://api.themoviedb.org/3/movie/19995?api_key=06412c2ac60d3b3a66c7fb129dcaca28&language=en-US")
+    .then((response) => response.json())
+    .then((data) => {
+    const value = data;
+    //Apply HTML src
+     console.log(value);
+
+});
+
+    </script>
+    <img id="ytplayer2" alt="Italian Trulli"></img>
+</body>
+</html>

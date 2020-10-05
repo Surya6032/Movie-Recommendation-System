@@ -5,6 +5,7 @@
   <title>Movie Recommender</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+
 <style>
 
 * {
@@ -158,15 +159,6 @@ body {
   font-weight: 300;
   font-size: 14px;
 }
-.fullscreen .container .card_1 {
-  background: url("https://w.wallhaven.cc/full/j8/wallhaven-j8gqyq.jpg") no-repeat center/cover;
-}
-.fullscreen .container .card_2 {
-  background: url("https://w.wallhaven.cc/full/5d/wallhaven-5dpo51.jpg") no-repeat 45%/cover;
-}
-.fullscreen .container .card_3 {
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.88)), url("https://w.wallhaven.cc/full/43/wallhaven-43y676.jpg") no-repeat center/cover;
-}
 
 .fullserie {
   background-color: #333;
@@ -303,15 +295,7 @@ body {
     font-weight: 300;
     font-size: 14px;
   }
-  .fullscreen .container .card_1 {
-    background: url("https://w.wallhaven.cc/full/j8/wallhaven-j8gqyq.jpg") no-repeat center/cover;
-  }
-  .fullscreen .container .card_2 {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.98)), url("https://w.wallhaven.cc/full/5d/wallhaven-5dpo51.jpg") no-repeat 45%/cover;
-  }
-  .fullscreen .container .card_3 {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.88)), url("https://w.wallhaven.cc/full/43/wallhaven-43y676.jpg") no-repeat center/cover;
-  }
+
 }
 @media (min-width: 320px) and (max-width: 580px) {
   .fullscreen {
@@ -400,15 +384,7 @@ body {
     font-weight: 300;
     font-size: 14px;
   }
-  .fullscreen .container .card_1 {
-    background: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-616574.jpg") no-repeat center/cover;
-  }
-  .fullscreen .container .card_2 {
-    background: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-539333.png") no-repeat 45%/cover;
-  }
-  .fullscreen .container .card_3 {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.88)), url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-5379.png") no-repeat center/cover;
-  }
+
 }
 @font-face {
   font-family: 'Sucrose Bold Two';
@@ -458,8 +434,8 @@ h3{
     <h1>The <span>Recommender</h1>
      <h3>By Surya Singh</h3>
     </header>
-    <div class="container">
-      <div class="card card_1">
+    <div class="container" >
+      <div class="card card_1" id="image1">
         <div class="date">
           {{ movie_date[0] }}
           <span class="tv_ico"><img src="http://www.cartaodental.com/nbase/image/pc.svg"></span>
@@ -475,8 +451,7 @@ h3{
         <div class="sinopse">
 
 
-          <iframe id="ytplayer" type="text/html" data-video="https://www.youtube.com/embed/{val}"
-  src="" frameborder="0" autoplay allowfullscreen></iframe>
+          <iframe id="ytplayer" type="text/html"  frameborder="0" autoplay allowfullscreen></iframe>
           <div class="content-sinopse">
             <div class="title">Series Synopsis</div>
             <div class="text">{{ movie_overview[0] }}
@@ -485,7 +460,7 @@ h3{
           <div class="view series_lacasa"> Watch Full Series </div>
         </div>
       </div>
-      <div class="card card_2">
+      <div class="card card_2" id="image2">
         <div class="date">
           {{ movie_date[1] }}
         </div>
@@ -500,7 +475,7 @@ h3{
         <div class="sinopse">
 
 
-
+          <iframe id="ytplayer1" class="player2" type="text/html"  frameborder="0" autoplay allowfullscreen></iframe>
           <div class="content-sinopse">
             <div class="title">Series Synopsis</div>
             <div class="text">{{ movie_overview[1] }}
@@ -509,7 +484,7 @@ h3{
           <div class="view series_lacasa"> Watch Movie </div>
         </div>
       </div>
-      <div class="card card_3">
+      <div class="card card_3" id="image3">
         <div class="date">
           {{ movie_date[2] }}
         </div>
@@ -522,7 +497,7 @@ h3{
           </div>
         </div>
         <div class="sinopse">
-
+          <iframe id="ytplayer2" class="player2" type="text/html"  frameborder="0" autoplay allowfullscreen></iframe>
 
 
           <div class="content-sinopse">
@@ -536,7 +511,43 @@ h3{
 
 <!-- partial -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
 
+fetch("https://api.themoviedb.org/3/movie/"+{{movieid[0]}}+"?api_key=06412c2ac60d3b3a66c7fb129dcaca28&language=en-US")
+    .then((response) => response.json())
+    .then((data) => {
+    const value = data.poster_path;
+    //Apply HTML src
+     console.log('https://image.tmdb.org/t/p/original'+value);
+     var urlString = "url('https://image.tmdb.org/t/p/original" + value + " ')";
+     document.getElementById('image1').style.backgroundImage = urlString;
+	 document.getElementById('image1').style.backgroundRepeat = "no-repeat";
+	  document.getElementById('image1').style.backgroundSize = "cover";
+});
+fetch("https://api.themoviedb.org/3/movie/"+{{movieid[1]}}+"?api_key=06412c2ac60d3b3a66c7fb129dcaca28&language=en-US")
+    .then((response) => response.json())
+    .then((data) => {
+    const value = data.poster_path;
+    //Apply HTML src
+     console.log('https://image.tmdb.org/t/p/original'+value);
+     var urlString = "url('https://image.tmdb.org/t/p/original" + value + " ')";
+     document.getElementById('image2').style.backgroundImage = urlString;
+	 document.getElementById('image2').style.backgroundRepeat = "no-repeat";
+	  document.getElementById('image2').style.backgroundSize = "cover";
+});
+fetch("https://api.themoviedb.org/3/movie/"+{{movieid[2]}}+"?api_key=06412c2ac60d3b3a66c7fb129dcaca28&language=en-US")
+    .then((response) => response.json())
+    .then((data) => {
+    const value = data.poster_path;
+    //Apply HTML src
+     console.log('https://image.tmdb.org/t/p/original'+value);
+     var urlString = "url('https://image.tmdb.org/t/p/original" + value + " ')";
+     document.getElementById('image3').style.backgroundImage = urlString;
+	 document.getElementById('image3').style.backgroundRepeat = "no-repeat";
+	  document.getElementById('image3').style.backgroundSize = "cover";
+});
+
+</script>
 
 <script>
 $(".card").hover(function() {
@@ -577,27 +588,34 @@ $('.fullserie .close').click(function(){
 });
 </script>
 <script>
-function parseURLParams(url) {
-    var queryStart = url.indexOf("?") + 1,
-        queryEnd   = url.indexOf("#") + 1 || url.length + 1,
-        query = url.slice(queryStart, queryEnd - 1),
-        pairs = query.replace(/\+/g, " ").split("&"),
-        parms = {}, i, n, v, nv;
+fetch("http://api.themoviedb.org/3/movie/"+{{movieid[0]}}+"/videos?api_key=06412c2ac60d3b3a66c7fb129dcaca28&append_to_response=videost")
+.then((response) => response.json())
+.then((data) => {
+const value = data.results[0].key
+//Apply HTML src
+document.getElementById("ytplayer").src = 'https://www.youtube.com/embed/'+value+'?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&modestbranding=1&controls=0&showinfo=1&mute=1'
+//Set Data-Attribute
+document.getElementById("ytplayer").setAttribute('data-video', 'https://www.youtube.com/embed/'+value+'?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&modestbranding=1&controls=0&showinfo=1&mute=1')
+});
+fetch("http://api.themoviedb.org/3/movie/"+{{movieid[1]}}+"/videos?api_key=06412c2ac60d3b3a66c7fb129dcaca28&append_to_response=videost")
+.then((response) => response.json())
+.then((data) => {
+const value = data.results[0].key
+//Apply HTML src
+document.getElementById("ytplayer1").src = 'https://www.youtube.com/embed/'+value+'?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&modestbranding=1&controls=0&showinfo=1&mute=1'
+//Set Data-Attribute
+document.getElementById("ytplayer1").setAttribute('data-video', 'https://www.youtube.com/embed/'+value+'?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&modestbranding=1&controls=0&showinfo=1&mute=1')
+});
+fetch("http://api.themoviedb.org/3/movie/"+{{movieid[2]}}+"/videos?api_key=06412c2ac60d3b3a66c7fb129dcaca28&append_to_response=videost")
+.then((response) => response.json())
+.then((data) => {
+const value = data.results[0].key
+//Apply HTML src
+document.getElementById("ytplayer2").src = 'https://www.youtube.com/embed/'+value+'?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&modestbranding=1&controls=0&showinfo=1&mute=1'
+//Set Data-Attribute
+document.getElementById("ytplayer2").setAttribute('data-video', 'https://www.youtube.com/embed/'+value+'?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&modestbranding=1&controls=0&showinfo=1&mute=1')
+});
 
-    if (query === url || query === "") return;
-
-    for (i = 0; i < pairs.length; i++) {
-        nv = pairs[i].split("=", 2);
-        n = decodeURIComponent(nv[0]);
-        v = decodeURIComponent(nv[1]);
-
-        if (!parms.hasOwnProperty(n)) parms[n] = [];
-        parms[n].push(nv.length === 2 ? v : null);
-    }
-    return parms;
-}
-var value=parseURLParams("http://api.themoviedb.org/3/movie/{{movieid[0]}}/videos?api_key=06412c2ac60d3b3a66c7fb129dcaca28")
-var val=value["key"];
 </script>
 </body>
 </html>

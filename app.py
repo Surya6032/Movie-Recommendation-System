@@ -54,7 +54,7 @@ def index():
     return render_template('index.html',suggestions=suggestions)
 
 # Set up the main route
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/positive', methods=['GET', 'POST'])
 
 def main():
     if flask.request.method == 'GET':
