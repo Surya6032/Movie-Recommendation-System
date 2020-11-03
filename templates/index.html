@@ -41,7 +41,13 @@ header h1 {
   color:white;
   left:800px;
 }
-
+#popular{
+  font-family: 'Sucrose Bold Two';
+  font-size: 3vw;
+  line-height: .8;
+  text-align: center;
+  color:white;
+}
 header h1 span {
   display: block;
   font-size: 3.75vw;
@@ -61,6 +67,65 @@ h3{
   display: block;
   text-align: center;
 }
+figure {
+  margin: 0;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+.movies {
+  display: grid;
+  grid-gap: 3em 2em;
+  grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.movie__figure {
+  position: relative;
+}
+
+.movie__poster {
+  -webkit-box-shadow: 0 0 1em rgba(0, 0, 0, .5);
+          box-shadow: 0 0 1em rgba(0, 0, 0, .5);
+  margin-bottom: 0.5em;
+}
+
+.movie__vote {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #f68d01;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 0 1em rgba(0, 0, 0, .25);
+          box-shadow: 0 0 1em rgba(0, 0, 0, .25);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 2.25em;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0.5em;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 75%;
+  -webkit-transform: translateX(50%);
+          transform: translateX(50%);
+  width: 2.25em;
+}
+
+.movie__title {
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: 400;
+  margin: 0;
+}
 </style>
 </head>
 <body>
@@ -69,30 +134,37 @@ h3{
 <h1>The <span>Recommender</h1>
  <h3>By Surya Singh</h3>
 </header>
-     <center><div class="wrap">
-        <div style="margin-top: 300px;">
-        <form class="search" action="{{ url_for('main') }}"  method="POST">
-            <input type="text" class="searchTerm" id="autoComplete" autocomplete="off" name="movie_name" placeholder="Enter a full movie name">
-            <button class="searchButton" type="submit"  value="Submit">
-            </button>
-        </form>
-         <br>
-      </div></center>
+<center><div class="wrap">
+   <div>
+   <form class="search" action="{{ url_for('main') }}"  method="POST">
+       <input type="text" class="searchTerm" id="autoComplete" autocomplete="off" name="movie_name" placeholder="Enter a full movie name">
+       <button class="searchButton" type="submit"  value="Submit">
+       </button>
+   </form>
+    <br>
+ </div></center>
 
-  </div>
-  <div id="loader" class="text-center">
-  <div class="results">
-    <center>
-      <h2 id="name" class="text-uppercase"></h2>
-    </center>
-	</div>
+</div>
+<div id="loader" class="text-center">
+<div class="results">
+<center>
+ <h2 id="name" class="text-uppercase"></h2>
+
+</center>
+</div>
+  <h2 id="popular">Popular Movies</h2>
+  <div id="root"></div>
 
 
-
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.5.10/prop-types.min.js'></script>
+  <script type="module" src="./script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/js/autoComplete.min.js"></script>
     <script type="text/javascript" src="{{url_for('static', filename='autocomplete.js')}}"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{url_for('static', filename='recommend.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='script.js')}}"></script>
 </body>
 </html>

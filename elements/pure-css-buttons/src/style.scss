@@ -1,0 +1,162 @@
+$icon-size	  : 60px;
+$border-radius: 0.5;//15% = 0.15, 50% = 0.50 etc.
+
+$background   : #2d2c3e;
+$background-b : #2d2c3e;
+
+// Icon Colors
+$green        : #16A085;
+$red          : #C82647;
+$green-l      : #8CC63F;
+$orange       : #EB9532;
+$purple       : #7E3661;
+
+// Text
+$white		  : #FFFFFF;
+
+body{
+	background: $background-b;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	overflow: hidden;
+	z-index: -1;
+}
+
+.container{
+	display: table;
+	height: 95vh;
+	width: 90%;
+	padding-bottom: 5vh;
+	margin: auto auto;
+	@media (max-width: 900px){
+	}
+	background: $background;
+	z-index: -1;
+}
+
+.content{
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+}
+
+h1{
+	font-family: 'Lato', sans-serif;
+	font-size: 36px;
+	font-weight: 300;
+	color: $white;
+}
+
+.icon-container{
+	margin-top: 30px;
+	width: 100%;
+	height: $icon-size;
+}
+
+.icon{
+	cursor: pointer;
+	position: relative;
+	display: inline-block;
+	width: $icon-size;
+	height: $icon-size;
+	margin-left: $icon-size/5;
+	margin-right: $icon-size/5;
+	border-radius: $icon-size*$border-radius;
+	overflow: hidden;
+	&::before, &::after{
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		transition: all 0.25s ease;
+		border-radius: $icon-size*$border-radius;
+	}
+	i{
+		position: relative;
+		color: $white;
+		font-size: $icon-size/2;
+		margin-top: $icon-size/4;
+		transition: all 0.25s ease;
+	}
+}
+
+.icon-fill{
+	&::before{
+		transition-duration: 0.5s;
+		box-shadow: inset 0 0 0 1px $green;
+	}
+	&:hover::before{
+		box-shadow: inset 0 0 0 $icon-size $green;
+	}
+}
+
+.icon-enter{
+	&::after{
+		box-shadow: inset 0 0 0 1px $orange;
+	}
+	&::before{
+		border-radius: 0;
+		margin-left: -100%;
+		box-shadow: inset 0 0 0 $icon-size $orange;
+	}
+	&:hover::before{
+		margin-left: 0;
+	}
+}
+
+.icon-expand{
+	&::after{
+		box-shadow: inset 0 0 0 1px $red;
+	}
+	&::before{
+		background: $red;
+		box-shadow: inset 0 0 0 $icon-size $background;
+	}
+	&:hover::before{
+		box-shadow: inset 0 0 0 1px $background;
+	}
+}
+
+.icon-collapse{
+	&::before{
+		border-radius: 0;
+	}
+	&:hover::before{
+		box-shadow: 
+		inset 0 $icon-size/2 0 0 $green-l,
+		inset 0 $icon-size/-2 0 0 $green-l;
+	}
+	&::after{
+		box-shadow: inset 0 0 0 1px $green-l;
+	}
+}
+
+.icon-rotate{
+	box-shadow: inset 0 0 0 1px $purple;
+	&::after, &::before{
+		border: 0px solid transparent;
+	}
+	&:hover::before{
+		transition:
+			border-top-width 0.3s ease,
+			border-top-color 0.3s ease;
+		border-width: $icon-size;
+		border-top-color: $purple;
+	}
+	&:hover::after{
+		transition:
+			border-left-width 0.3s ease,
+			border-left-color 0.3s ease;
+		border-width: $icon-size;
+		border-left-color: $purple;
+	}
+	&:hover{
+		transition: background 0.001s ease 0.3s;
+		background: $purple;
+	}
+	i{
+		z-index: 1;
+	}
+}

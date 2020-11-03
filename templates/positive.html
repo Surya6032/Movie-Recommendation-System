@@ -5,7 +5,10 @@
   <title>Movie Recommender</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <style>
 
 * {
@@ -402,10 +405,9 @@ header h1 {
 
   font-size: 3vw;
   line-height: .8;
-  top: 20px;
   text-align: center;
   color:white;
-  left:800px;
+
 }
 
 header h1 span {
@@ -417,23 +419,56 @@ h3{
   color: white;
   font-size: 1vw;
   line-height: .8;
-  top: 200px;
   text-align: center;
   color:white;
-  left:1000px;
   display: block;
   text-align: center;
 }
+ .Underline a{
+  text-decoration: none;
+  color: white;}
+
+
+  .icon {
+    cursor: pointer;
+    height: 60px;
+    color: #FFFFFF;
+    font-size: 30px;
+  }
+
+  footer,a{
+    text-decoration: none;
+    text-align: center;
+    left: 50%;
+    color: white;
+    font-family: 'Sucrose Bold Two';
+
+
+  }
+  .container2 {
+    float:left;
+
+  }
 </style>
 </head>
 <body>
 
-
+  <div class="container2">
+  <a href="/"><div class="icon icon-fill"><i class="fa fa-home"></i></div></a> </div>
   <div class="fullscreen">
+
     <header>
-    <h1>The <span>Recommender</h1>
-     <h3>By Surya Singh</h3>
+
+    <h1 class="Underline"><a href="/">The <span>Recommender</a></h1>
+
+      <h3 > By Surya Singh</h3>
+
+
+     <h3> Showing Results for: {{search_name}}</h3>
+
     </header>
+
+
     <div class="container" >
       <div class="card card_1" id="image1">
         <div class="date">
@@ -508,6 +543,11 @@ h3{
           <div class="view series_lacasa"> Watch Full Series </div>
         </div>
       </div>
+    </div>
+
+      <footer>
+        <p>Designed by <a href="http://www.suryasingh.me/">Surya Singh</a></p>
+      </footer>
 
 <!-- partial -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -518,7 +558,7 @@ fetch("https://api.themoviedb.org/3/movie/"+{{movieid[0]}}+"?api_key=06412c2ac60
     .then((data) => {
     const value = data.poster_path;
     //Apply HTML src
-     console.log('https://image.tmdb.org/t/p/original'+value);
+
      var urlString = "url('https://image.tmdb.org/t/p/original" + value + " ')";
      document.getElementById('image1').style.backgroundImage = urlString;
 	 document.getElementById('image1').style.backgroundRepeat = "no-repeat";
@@ -529,7 +569,7 @@ fetch("https://api.themoviedb.org/3/movie/"+{{movieid[1]}}+"?api_key=06412c2ac60
     .then((data) => {
     const value = data.poster_path;
     //Apply HTML src
-     console.log('https://image.tmdb.org/t/p/original'+value);
+
      var urlString = "url('https://image.tmdb.org/t/p/original" + value + " ')";
      document.getElementById('image2').style.backgroundImage = urlString;
 	 document.getElementById('image2').style.backgroundRepeat = "no-repeat";
@@ -540,7 +580,7 @@ fetch("https://api.themoviedb.org/3/movie/"+{{movieid[2]}}+"?api_key=06412c2ac60
     .then((data) => {
     const value = data.poster_path;
     //Apply HTML src
-     console.log('https://image.tmdb.org/t/p/original'+value);
+
      var urlString = "url('https://image.tmdb.org/t/p/original" + value + " ')";
      document.getElementById('image3').style.backgroundImage = urlString;
 	 document.getElementById('image3').style.backgroundRepeat = "no-repeat";
