@@ -1,0 +1,9 @@
+.wrapper
+  for movie in [{'id': 'one', 'number': '01', 'title': 'The Force Awakens', 'desc': 'Han Solo and his young allies face a new threat from the evil First Order.'}]
+      .card
+        .card__overlay
+        .card__content
+          span.card__title #{movie.title}
+          span.card__description #{movie.desc}
+          button.card__btn Play Movie
+        span.card__number #{movie.number}

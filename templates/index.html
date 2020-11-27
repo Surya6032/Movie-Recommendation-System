@@ -27,6 +27,7 @@ body{
   height: 100vh;
   background-color:black;
   background-size: cover;
+
 }
 header {
 
@@ -126,6 +127,132 @@ img {
   font-weight: 400;
   margin: 0;
 }
+:root {
+  font-size: 20px;
+}
+@media screen and (max-width: 730px) {
+  :root {
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 540px) {
+  :root {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 465px) {
+  :root {
+    font-size: 12px;
+  }
+}
+.wrapper {
+  height: inherit;
+  width: inherit;
+  margin: 0 auto;
+  padding: 0;
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+}
+
+.card {
+  width: 28rem;
+  height: 16rem;
+  margin: 2em;
+  background: #aaa;
+  background-size: cover;
+  background-position: center;
+  border-radius: .15em;
+  box-shadow: 0em 0em 1em rgba(0, 0, 0, 0.7);
+  position: relative;
+  color: #fff;
+  padding: 0em 3em 1.5em 3em;
+  overflow: hidden;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: start;
+          justify-content: start;
+  -webkit-box-align: end;
+          align-items: flex-end;
+  -webkit-transition: all 0.4s ease-in;
+  transition: all 0.4s ease-in;
+}
+.card:hover * {
+  cursor: pointer;
+}
+.card:hover .card__content {
+  font-size: 1rem;
+}
+.card:hover .card__number {
+  opacity: 1;
+  -webkit-transform: translateY(0em);
+          transform: translateY(0em);
+}
+.card:hover:before {
+  left: 0em;
+}
+.card:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -42em;
+  height: 100%;
+  width: 100%;
+  background: -webkit-gradient(linear, left top, right top, color-stop(46%, rgba(30, 80, 110, 0.6)), to(rgba(39, 90, 161, 0.6)));
+  background: linear-gradient(90deg, rgba(30, 80, 110, 0.6) 46%, rgba(39, 90, 161, 0.6) 100%);
+  z-index: 4;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.card__overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(33, 33, 33, 0.45);
+  z-index: 3;
+}
+
+.card__content {
+
+  position: relative;
+  font-size: 1rem;
+  z-index: 5;
+  -webkit-transition: all 0.3s 0.2s ease-in-out;
+  transition: all 0.3s 0.2s ease-in-out;
+}
+.card__content span,
+.card__content button {
+  font-family: 'Sucrose Bold Two';
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/sucrose.woff2") format("woff2");
+font-size: 28px;
+}
+
+.card__title {
+  font-size: 3em;
+
+}
+
+
+.card__number {
+  position: absolute;
+  top: -.09em;
+  right: .154em;
+  font-size: 6.13em;
+  font-weight: bold;
+  z-index: 7;
+  opacity: 0;
+  -webkit-transform: translateY(0.24em);
+          transform: translateY(0.24em);
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
 </style>
 </head>
 <body>
@@ -134,7 +261,7 @@ img {
 <h1>The <span>Recommender</h1>
  <h3>By Surya Singh</h3>
 </header>
-<center><div class="wrap">
+<center><div class="wrap" >
    <div>
    <form class="search" action="{{ url_for('main') }}"  method="POST">
        <input type="text" class="searchTerm" id="autoComplete" autocomplete="off" name="movie_name" placeholder="Enter a full movie name">
@@ -152,19 +279,91 @@ img {
 
 </center>
 </div>
+<h2 id="popular">Movies you may like</h2>
+<div class="wrapper" >
+  <div class="card" id="image1">
+    <div class="card__overlay"></div>
+    <div class="card__content"><span class="card__title">{{movie_names[0]}}</span><br><span>{{movie_date[0]}}</span>
+
+    </div><span class="card__number">01</span>
+  </div>
+  <div class="card" id="image2">
+    <div class="card__overlay"></div>
+    <div class="card__content"><span class="card__title">{{movie_names[1]}}</span><br><span>{{movie_date[1]}}</span>
+    </div><span class="card__number">02</span>
+  </div>
+  <div class="card" id="image3">
+    <div class="card__overlay"></div>
+    <div class="card__content"><span class="card__title">{{movie_names[2]}}</span><br><span>{{movie_date[2]}}</span>
+    </div><span class="card__number">03</span>
+  </div>
+  <div class="card" id="image4">
+    <div class="card__overlay"></div>
+    <div class="card__content"><span class="card__title">{{movie_names[3]}}</span><br><span>{{movie_date[3]}}</span>
+    </div><span class="card__number">04</span>
+  </div>
+</div>
   <h2 id="popular">Popular Movies</h2>
+
   <div id="root"></div>
 
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.5.10/prop-types.min.js'></script>
-  <script type="module" src="./script.js"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/js/autoComplete.min.js"></script>
     <script type="text/javascript" src="{{url_for('static', filename='autocomplete.js')}}"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{url_for('static', filename='recommend.js')}}"></script>
     <script type="text/javascript" src="{{url_for('static', filename='script.js')}}"></script>
+    <script>
+
+    fetch("https://api.themoviedb.org/3/movie/"+{{movieid[0]}}+"?api_key=06412c2ac60d3b3a66c7fb129dcaca28&language=en-US")
+        .then((response) => response.json())
+        .then((data) => {
+        const value = data.poster_path;
+        //Apply HTML src
+
+         var urlString = "url('https://image.tmdb.org/t/p/original" + value + " ')";
+         document.getElementById('image1').style.backgroundImage = urlString;
+    	 document.getElementById('image1').style.backgroundRepeat = "no-repeat";
+    	  document.getElementById('image1').style.backgroundSize = "cover";
+    });
+    fetch("https://api.themoviedb.org/3/movie/"+{{movieid[1]}}+"?api_key=06412c2ac60d3b3a66c7fb129dcaca28&language=en-US")
+        .then((response) => response.json())
+        .then((data) => {
+        const value = data.poster_path;
+        //Apply HTML src
+
+         var urlString = "url('https://image.tmdb.org/t/p/original" + value + " ')";
+         document.getElementById('image2').style.backgroundImage = urlString;
+    	 document.getElementById('image2').style.backgroundRepeat = "no-repeat";
+    	  document.getElementById('image2').style.backgroundSize = "cover";
+    });
+    fetch("https://api.themoviedb.org/3/movie/"+{{movieid[2]}}+"?api_key=06412c2ac60d3b3a66c7fb129dcaca28&language=en-US")
+        .then((response) => response.json())
+        .then((data) => {
+        const value = data.poster_path;
+        //Apply HTML src
+
+         var urlString = "url('https://image.tmdb.org/t/p/original" + value + " ')";
+         document.getElementById('image3').style.backgroundImage = urlString;
+    	 document.getElementById('image3').style.backgroundRepeat = "no-repeat";
+    	  document.getElementById('image3').style.backgroundSize = "cover";
+    });
+    fetch("https://api.themoviedb.org/3/movie/"+{{movieid[3]}}+"?api_key=06412c2ac60d3b3a66c7fb129dcaca28&language=en-US")
+        .then((response) => response.json())
+        .then((data) => {
+        const value = data.poster_path;
+        //Apply HTML src
+
+         var urlString = "url('https://image.tmdb.org/t/p/original" + value + " ')";
+         document.getElementById('image4').style.backgroundImage = urlString;
+       document.getElementById('image4').style.backgroundRepeat = "no-repeat";
+        document.getElementById('image4').style.backgroundSize = "cover";
+    });
+    </script>
 </body>
 </html>

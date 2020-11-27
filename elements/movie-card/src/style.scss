@@ -1,0 +1,137 @@
+:root {
+  font-size: 24px;
+  @media screen and (max-width: 730px) {
+    font-size: 18px;
+  }
+  @media screen and (max-width: 540px) {
+    font-size: 16px;
+  }
+  @media screen and (max-width: 465px) {
+    font-size: 12px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  font-family: 'PT Sans Narrow', sans-serif;
+}
+
+.wrapper {
+  height: inherit;
+  width: inherit;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  width: 28rem;
+  height: 16rem;
+  margin: 2em;
+  background: #aaa;
+  background: url("http://www.mactrast.com/wp-content/uploads/2015/12/SWTFA_wallaper_Mac.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: .15em;
+  box-shadow: 0em 0em 1em rgba(0, 0, 0, 0.7);
+  position: relative;
+  color: #fff;
+  padding: 0em 3em 1.5em 3em;
+  overflow: hidden;
+  display: flex;
+  justify-content: start;
+  align-items: flex-end;
+  transition: all 0.4s ease-in;
+  &:hover * {
+    cursor: pointer;
+  }
+  &:hover .card__content {
+    font-size: 1.06rem;
+  }
+  &:hover .card__number {
+    opacity: 1;
+    transform: translateY(0em);
+  }
+  &:hover:before {
+    left: 0em;
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -42em;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, rgba(30, 80, 110, 0.6%) 46%, rgba(39, 90, 161, 0.6%) 100%);
+    z-index: 4;
+    transition: all 0.4s ease-in-out;
+  }
+}
+
+.card__overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: hsla(0, 0%, 13%, 0.45%);
+  z-index: 3;
+}
+
+.card__content {
+  position: relative;
+  font-size: 1rem;
+  z-index: 5;
+  transition: all 0.3s 0.2s ease-in-out;
+  span,
+  button {
+    display: block;
+    font-weight: bold;
+  }
+}
+
+.card__title {
+  font-size: 1.9em;
+}
+
+.card__description {
+  font-size: .7em;
+  font-style: italic;
+  margin-bottom: 1em;
+}
+
+.card__btn {
+  position: relative;
+  font-size: .72em;
+  letter-spacing: .04em;
+  padding: .53em 1.1em .53em 1.1em;
+  border: none;
+  background: linear-gradient(90deg, rgb(255, 91, 58) 62%, rgb(255, 114, 7) 100%);
+  color: #fff;
+  &:focus {
+    outline: none;
+  }
+}
+
+.card__number {
+  position: absolute;
+  top: -.09em;
+  right: .154em;
+  font-size: 6.13em;
+  font-weight: bold;
+  z-index: 7;
+  opacity: 0;
+  transform: translateY(.24em);
+  transition: all 0.4s ease-in-out;
+}

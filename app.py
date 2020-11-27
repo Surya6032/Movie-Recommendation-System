@@ -1,14 +1,15 @@
 import flask
+import csv
 from flask import Flask, render_template, request
 import difflib
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+import random
 
 app = flask.Flask(__name__, template_folder='templates')
 
 df2 = pd.read_csv('./model/tmdb.csv')
-
 count = CountVectorizer(stop_words='english')
 count_matrix = count.fit_transform(df2['soup'])
 
@@ -31,8 +32,8 @@ def get_recommendations(title):
     moviedetails=df2['overview'].iloc[movie_indices]
     movietypes=df2['keywords'].iloc[movie_indices]
     movieid=df2['id'].iloc[movie_indices]
- 
-  
+
+
     return_df = pd.DataFrame(columns=['Title','Year'])
     return_df['Title'] = tit
     return_df['Year'] = dat
@@ -50,8 +51,34 @@ app = Flask(__name__)
 @app.route("/")
 @app.route("/index")
 def index():
+    NewMovies=[]
+    with open('movieR.csv','r') as csvfile:
+        readCSV = csv.reader(csvfile)
+        NewMovies.append(random.choice(list(readCSV)))
+    m_name = NewMovies[0][0]
+    m_name = m_name.title()
+    
+    with open('movieR.csv', 'a',newline='') as csv_file:
+        fieldnames = ['Movie']
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+        writer.writerow({'Movie': m_name})
+        result_final = get_recommendations(m_name)
+        names = []
+        dates = []
+        ratings = []
+        overview=[]
+        types=[]
+        mid=[]
+        for i in range(len(result_final)):
+            names.append(result_final.iloc[i][0])
+            dates.append(result_final.iloc[i][1])
+            ratings.append(result_final.iloc[i][2])
+            overview.append(result_final.iloc[i][3])
+            types.append(result_final.iloc[i][4])
+            mid.append(result_final.iloc[i][5])
     suggestions = get_suggestions()
-    return render_template('index.html',suggestions=suggestions)
+    
+    return render_template('index.html',suggestions=suggestions,movie_type=types[5:],movieid=mid,movie_overview=overview,movie_names=names,movie_date=dates,movie_ratings=ratings,search_name=m_name)
 
 # Set up the main route
 @app.route('/positive', methods=['GET', 'POST'])
@@ -59,14 +86,17 @@ def index():
 def main():
     if flask.request.method == 'GET':
         return(flask.render_template('index.html'))
-            
+
     if flask.request.method == 'POST':
         m_name = flask.request.form['movie_name']
         m_name = m_name.title()
-#        check = difflib.get_close_matches(m_name,all_titles,cutout=0.50,n=1)
         if m_name not in all_titles:
             return(flask.render_template('negative.html',name=m_name))
         else:
+            with open('movieR.csv', 'a',newline='') as csv_file:
+                fieldnames = ['Movie']
+                writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+                writer.writerow({'Movie': m_name})
             result_final = get_recommendations(m_name)
             names = []
             dates = []
@@ -81,6 +111,7 @@ def main():
                 overview.append(result_final.iloc[i][3])
                 types.append(result_final.iloc[i][4])
                 mid.append(result_final.iloc[i][5])
+               
             return flask.render_template('positive.html',movie_type=types[5:],movieid=mid,movie_overview=overview,movie_names=names,movie_date=dates,movie_ratings=ratings,search_name=m_name)
 
 if __name__ == '__main__':

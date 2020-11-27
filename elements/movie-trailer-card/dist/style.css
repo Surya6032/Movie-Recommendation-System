@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css?family=Maven+Pro");
+@import url("https://fonts.googleapis.com/css?family=Orbitron");
+.wrapper {
+  background: url("http://www.wallpaperhi.com/thumbnails/detail/20131220/abstract%20minimalistic%20placebo%20gaussian%20blur%20blurred_www.wallpaperhi.com_81.jpg");
+  background-repeat: no-repeat;
+  background-size: 350%;
+  height: 100%;
+}
+.bg {
+  position: relative;
+  top: 6%;
+  -webkit-transform: translateY(-10%);
+          transform: translateY(-10%);
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/324479/martian.jpg");
+  background-repeat: no-repeat;
+  background-position: center-center;
+  background-size: cover;
+  height: auto;
+  padding: 2.5em;
+  -webkit-filter: saturate(1) blur(0.35px);
+          filter: saturate(1) blur(0.35px);
+  z-index: 5;
+  -webkit-transition: all 500ms ease-in-out;
+  transition: all 500ms ease-in-out;
+}
+.title {
+  font-family: Orbitron;
+  font-size: 2.75em;
+  margin-top: 20%;
+  text-transform: uppercase;
+}
+.sub-right {
+  float: right;
+  position: relative;
+  right: 0.5em;
+}
+.break {
+  margin: 7% 0 5% 0;
+  height: 1px;
+  width: 100%;
+  background: #e2e3e6;
+}
+.content {
+  margin: 0 0 20% 0;
+}
+.button-holder {
+  position: relative;
+  top: 30vh;
+  left: 20vh;
+}
+.fa-play {
+  margin-right: 0.75em;
+}
+.button {
+  background: #e2494b;
+  font-family: Maven Pro;
+  font-weight: 300;
+  text-transform: uppercase;
+  border-radius: 3px;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+  padding: 16px;
+  top: 10em;
+}
+.button:hover,
+.button:focus {
+  background: #cc3b3b;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+.sub-left,
+.sub-right {
+  color: #e2e3e6;
+  font-family: Maven Pro;
+}
+.sub-left,
+.sub-right {
+  font-family: Orbitron;
+  font-size: 0.9em;
+  position: relative;
+  top: -0.5em;
+}
+p,
+.sub-left,
+.sub-right {
+  font-weight: 300;
+  letter-spacing: 1px;
+}

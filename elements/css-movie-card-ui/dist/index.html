@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - CSS Movie Card UI</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!doctype html>
+<html>
+  <head>
+    <title>Movie Card UI Design</title>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="card">
+      <div class="image1"></div>
+      <div class="details">
+        <h1>  {{ movie_names[0]}}</h1>
+        <div class="info">
+          <p>{{ movie_overview[0] }}</p>
+        </div>
+
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<!-- partial -->
+<script>
+
+fetch("https://api.themoviedb.org/3/movie/"+{{movieid[0]}}+"?api_key=06412c2ac60d3b3a66c7fb129dcaca28&language=en-US")
+    .then((response) => response.json())
+    .then((data) => {
+    const value = data.poster_path;
+    //Apply HTML src
+
+     var urlString = "url('https://image.tmdb.org/t/p/original" + value + " ')";
+     document.getElementById('image1').style.backgroundImage = urlString;
+	 document.getElementById('image1').style.backgroundRepeat = "no-repeat";
+	  document.getElementById('image1').style.backgroundSize = "cover";
+});
+fetch("https://api.themoviedb.org/3/movie/"+{{movieid[1]}}+"?api_key=06412c2ac60d3b3a66c7fb129dcaca28&language=en-US")
+    .then((response) => response.json())
+    .then((data) => {
+    const value = data.poster_path;
+    //Apply HTML src
+
+     var urlString = "url('https://image.tmdb.org/t/p/original" + value + " ')";
+     document.getElementById('image2').style.backgroundImage = urlString;
+	 document.getElementById('image2').style.backgroundRepeat = "no-repeat";
+	  document.getElementById('image2').style.backgroundSize = "cover";
+});
+fetch("https://api.themoviedb.org/3/movie/"+{{movieid[2]}}+"?api_key=06412c2ac60d3b3a66c7fb129dcaca28&language=en-US")
+    .then((response) => response.json())
+    .then((data) => {
+    const value = data.poster_path;
+    //Apply HTML src
+
+     var urlString = "url('https://image.tmdb.org/t/p/original" + value + " ')";
+     document.getElementById('image3').style.backgroundImage = urlString;
+	 document.getElementById('image3').style.backgroundRepeat = "no-repeat";
+	  document.getElementById('image3').style.backgroundSize = "cover";
+});
+
+</script>
+
+</body>
+</html>
